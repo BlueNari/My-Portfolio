@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason's 16-Bit Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #1b1b32;
+            color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            height: 100vh; /* Full height for centering */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Vibrant Theme Colors */
+        #dialog-box {
+            background-color: #1a1a3d;
+            color: #fff;
+            border: 4px solid #f1f1f1;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto; /* Center horizontally */
+            padding: 20px;
+            box-shadow: 6px 6px 0 #333;
+            font-size: 16px;
+            line-height: 1.6;
+            border-radius: 12px;
+        }
+
+        #main-content {
+            display: none;
+            margin-top: 50px;
+        }
+
+        #about-me {
+            background-color: #3a3a5a;
+            border: 4px solid #f1f1f1;
+            padding: 20px;
+            margin: 20px auto; /* Center horizontally */
+            border-radius: 12px;
+            width: 80%;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .portrait {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            background-color: #3a3a5a;
+            margin: 0 auto;
+            border: 4px solid #f1f1f1;
+        }
+
+        /* Styled Buttons for Skills, Inventory & Projects */
+        .btn {
+            margin: 10px;
+            padding: 10px 20px;
+            border: 2px solid #f1f1f1;
+            background-color: #4b4b7a;
+            color: #f1f1f1;
+            cursor: pointer;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        /* Pop-Up Windows */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a1a3d;
+            border: 4px solid #f1f1f1;
+            padding: 20px;
+            width: 300px;
+            border-radius: 12px;
+            z-index: 10;
+            color: #f1f1f1;
+        }
+
+        .popup-content {
+            font-size: 16px;
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position: absolute; /* Positioned at the bottom */
+            bottom: 20px; /* Distance from the bottom */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #f1f1f1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Intro Dialogue Box -->
+    <div id="dialog-box">
+        <p>Greetings Adventurer! Welcome to my Portfolio.</p>
+        <p>Press <strong>Start</strong> to begin the journey!</p>
+        <button onclick="startJourney()">Start</button>
+    </div>
+
+    <!-- Main RPG-style Content -->
+    <div id="main-content">
+        <!-- About Me Section -->
+        <section id="about-me">
+            <h2>JASON IGNACIO</h2>
+            <div class="portrait"></div> <!-- Placeholder for image -->
+            <p><strong>HP:</strong> 100/100</p>
+            <p><strong>Mana:</strong> 100/100</p>
+            <p><strong>Class:</strong> Computer Scientist</p>
+            <p><strong>Race:</strong> Filipino</p>
+        </section>
+
+        <!-- Skills, Inventory & Projects Buttons -->
+        <button class="btn" onclick="togglePopup('skills-popup')">
+            <img src="swords-icon.png" alt="Skills Icon"> Skills
+        </button>
+        <button class="btn" onclick="togglePopup('inventory-popup')">
+            <img src="backpack-icon.png" alt="Inventory Icon"> Inventory
+        </button>
+        <button class="btn" onclick="togglePopup('projects-popup')">
+            <img src="projects-icon.png" alt="Projects Icon"> Projects
+        </button>
+
+        <!-- Skills Pop-Up -->
+        <div id="skills-popup" class="popup">
+            <div class="popup-content">
+                <p><strong>Skills:</strong></p>
+                <ul>
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>HTML</li>
+                </ul>
+                <button onclick="togglePopup('skills-popup')">Close</button>
+            </div>
+        </div>
+
+        <!-- Inventory Pop-Up -->
+        <div id="inventory-popup" class="popup">
+            <div class="popup-content">
+                <p><strong>Inventory:</strong></p>
+                <ul>
+                    <li>GED Diploma x1</li>
+                    <li>GED Transcript x1</li>
+                </ul>
+                <button onclick="togglePopup('inventory-popup')">Close</button>
+            </div>
+        </div>
+
+        <!-- Projects Pop-Up -->
+        <div id="projects-popup" class="popup">
+            <div class="popup-content">
+                <p><strong>Projects:</strong></p>
+                <ul>
+                    <li>Project 1</li>
+                    <li>Project 2</li>
+                    <li>Project 3</li>
+                </ul>
+                <button onclick="togglePopup('projects-popup')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Icons at the Bottom -->
+    <div class="social-icons">
+        <span>Contact me:</span>
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://instagram.com/eurilaya" target="_blank">Instagram</a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="lavender-town-theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function startJourney() {
+            document.getElementById('dialog-box').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+
+        function togglePopup(id) {
+            const popup = document.getElementById(id);
+            popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
